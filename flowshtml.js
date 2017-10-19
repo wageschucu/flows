@@ -10,7 +10,7 @@
     let localStorageKeyPrefix = "flowsdatakey"
     let start = localStorage.getItem(localStorageKeyPrefix + "start") || '20170101'
     let end = localStorage.getItem(localStorageKeyPrefix + "end") || '20171231'
-    let windowSize = localStorage.getItem(localStorageKeyPrefix + "windowSize") || "M"
+    let windowSize = localStorage.getItem(localStorageKeyPrefix + "windowSize") || translateRythmToJSMoment("m")
     let deltaBalanceThreshold = localStorage.getItem(localStorageKeyPrefix + "deltaBalanceThreshold") || 200
     let targetCurrency = localStorage.getItem(localStorageKeyPrefix + "targetCurrency") || "chf"
     let startExpandLevel = localStorage.getItem(localStorageKeyPrefix + "startExpandLevel") || 1
@@ -25,7 +25,7 @@
         $('#flowscontrol').empty();
 
         $('<span>').text("window:").append($input = $('<input>').val(windowSize).on('blur', (e) => {
-                windowSize = e.target.value;
+                windowSize = translateRythmToJSMoment(e.target.value);
                 localStorage.setItem(localStorageKeyPrefix + "windowSize", windowSize)
             }))
             .appendTo($('#flowscontrol'))

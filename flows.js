@@ -1,13 +1,18 @@
     // todo: 
+    // totals bug: rollups: mergeFlow has two usages: merge bucketing(should take last/newest), merge rollup (balances should added): 
     // zoom in gestures: pop up with/jump to stack for one level of detail or 2 more: M -> w or -> day explode 
-    // balance differences show: flag when above threshold: flag all the account contracts
-    // separate into files
+    // balance differences show: threshold : what should it be?? average, percent, ?? 
     // filter like data tables?? at least on account
-    // manual refresh button
     // work on color, font, ux coding of structure of display
-    // add file load button and saving of last path to local storage 
-    //     https://www.w3schools.com/howto/howto_js_popup.asp
     // gui jquery code redesign - collapse event handling!!
+    // create very simple example contracts and accounts that is visually nachvorziehbar
+    // auto transfer: what ever is needed in cc account at certain date; if there is enough balance in debit account
+    // standard stress test
+    //   notice periods
+    // generate contracts from tasks: travel: 
+    // expense/amortize from resource usage inputs: vacation : millage=> tires, car, gas consumption
+    // better analysis/report of budget quality: deltas
+    // load contracts/reconcile from post xml dump
 
     let testContracts
     let testAccounts
