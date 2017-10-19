@@ -15,7 +15,7 @@
     let targetCurrency = localStorage.getItem(localStorageKeyPrefix + "targetCurrency") || "chf"
     let startExpandLevel = localStorage.getItem(localStorageKeyPrefix + "startExpandLevel") || 1
 
-    let filepath = localStorage.getItem(localStorageKeyPrefix + "filepath") || "mydata.js"
+    let filepath = localStorage.getItem(localStorageKeyPrefix + "filepath") || "mydata.json"
     let test
 
     $(createControls)

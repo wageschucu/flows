@@ -17,8 +17,8 @@
                 },
                 // transfer
                 transfers: [
-                    { account: "monthly", start: 20170101, rythm: "M", amount: 1400 },
-                    { account: "spar", start: 20170101, rythm: "M", amount: 2000 },
+                    { account: "monthly", start: 20170101, rythm: "m", amount: 1400 },
+                    { account: "spar", start: 20170101, rythm: "m", amount: 2000 },
                 ],
             },
             monthly: {
@@ -26,7 +26,7 @@
                     '20170101': 100,
                 },
                 // transfer??
-                //spar: { start: 20170101, rythm: "M",  amount: 1000 },
+                //spar: { start: 20170101, rythm: "m",  amount: 1000 },
             },
 
             usd: {
@@ -68,7 +68,7 @@
      contracts = {
         account: "zahlungs",
         unit: "chf",
-        rythm: "M",
+        rythm: "m",
         start: "20160101",
 
         ruckbildungen: {
@@ -77,21 +77,21 @@
         transfers: {},
         apartment: {
             miete: {
-                amount: 1800,
+                amount: 1500,
             },
             utils: {
                 amount: 150,
             },
             elect: {
                 amount: 150,
-                rythm: "Q",
+                rythm: "q",
             },
             cleaning: {
                 amount: 75,
                 rythm: "w",
                 supplies: {
                     amount: 25,
-                    rythm: "M",
+                    rythm: "m",
                     account: "monthly",
                 },
             },
@@ -108,7 +108,7 @@
         health: {
             kk: {
                 amount: 400,
-                rythm: "M",
+                rythm: "m",
                 francise: {
                     start: "20160301",
                     amount: 1000,
@@ -120,24 +120,24 @@
             },
             drogery: {
                 amount: 25,
-                rythm: "M",
+                rythm: "m",
                 account: "monthly",
             },
         },
         income: {
             lohn: {
                 amount: -6000,
-                rythm: "M",
+                rythm: "m",
                 start: "20170131",
                 bonus: {
-                    amount: -9000,
+                    amount: -6000,
                     rythm: "y",
                     start: "20171231",
                 },
             },
             zulagen: {
                 amount: -230,
-                rythm: "M",
+                rythm: "m",
                 start: "20170131",
                 kendra: {
                     amount: 230,
@@ -180,7 +180,7 @@
             account: "zahlungs",
             rythm: "y",
             gas: {
-                rythm: "M",
+                rythm: "m",
                 amount: 70,
             },
             vinette: {
@@ -209,7 +209,7 @@
                 },
                 replacement: {
                     // amortisation: {
-                    //     rythm: "M",
+                    //     rythm: "m",
                     //     contract: "ruckbildungen",
                     //     transferAccount: "spar",
                     //     calc:"auto:match:..",
@@ -226,7 +226,7 @@
                 account: "spar",
                 amount: 5000,  // 2016.3.9 kauf 14,900; 1.6 scti titanium, km 43,000;  2017.06.1: km 58,090 : comparis: 13'578, 11'534
                 // amortisation: {
-                //     rythm: "M",
+                //     rythm: "m",
                 //     contract: "ruckbildungen",
                 //     calc:"auto:match:..",
                 //     transferAccount: "spar",
