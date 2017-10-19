@@ -13,7 +13,7 @@
     let testAccounts
     let contracts
     let accounts
-    let units 
+    let units
 
     // [accountNames],[all-flows]=> genAllAccountLines => [chunkFlows], Total-chunkedFlows
     function genAllAccountLines(accountNames, normalizedAcccounts, allFlows, start, end, unit, rythm) {
@@ -124,6 +124,26 @@
         return result
     }
 
+    function translateRythmToJSMoment(rythm) {
+        switch (rythm) {
+            case "m":
+                rythm="M"
+                break;
+
+            case "q":
+                rythm="Q"
+                break;
+
+            case "m":
+                rythm="M"
+                break;
+
+            default:
+                break;
+        }
+        return rythm; 
+    }
+
     function parseRythm(rythm) {
         let res = { length: 1, rythm: "" }
         let a = rythm.split("-")
@@ -133,8 +153,7 @@
             res.rythm = a[1]
             res.length = parseInt(a[0])
         }
-        if (res.rythm == "y")
-            console.log("found")
+        res.rythm = translateRythmToJSMoment(res.rythm)
         return res
     }
 
@@ -655,6 +674,3 @@
         inherited: [],
         transfers: []
     }
-
-
-

@@ -780,7 +780,7 @@
                     $bal.css("font-weight", "bold")
                     // list 
                     $bal.attr("title", prettyNegatives(wind.negative))
-                    $bal.on("click", openmodel("", textToHtml(prettyNegatives(wind.negative))))
+                    $bal.on("click", openmodel("days with negative balances", textToHtml(prettyNegatives(wind.negative))))
                 }
             })
 
