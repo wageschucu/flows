@@ -1,5 +1,5 @@
 # flows
-cash flows management locally in your browser
-load the file flows.html into your browser (chrome)
-edit the json data file : mydata.json
+Cash flows management locally in your browser.  
+Load the file flows.html into your browser (chrome). 
+Edit the json data file : mydata.json
 
