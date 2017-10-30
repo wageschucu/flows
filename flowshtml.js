@@ -233,7 +233,11 @@
             count++
             return mergeFlow(merged, flow)
         }, {})
-        mergedFlow.average = round(mergedFlow.amount / count)
+    
+        mergedFlow.average= mergedFlow.average || {}
+        mergedFlow.average.net = round(mergedFlow.amount / count)
+        mergedFlow.average.in = round(mergedFlow.in / count)
+        mergedFlow.average.out = round(mergedFlow.out / count)
         return mergedFlow
     }
 
@@ -597,7 +601,7 @@
                     $tr.append($td
                         .append($('<span>').text(wind.amount))
                         .append($('<br>'))
-                        .append($('<span>').text("avg:" + wind.average))
+                        .append($('<span>').text("avg:" + wind.average.net))
                         .css("border", "1px solid #000")
                         .css("padding-left", ' ' + (level * 10) + "px")
                         .css("background-color", "white")
@@ -627,7 +631,7 @@
                     $endRow.append($td
                         .append($('<span>').text(wind.amount))
                         .append($('<br>'))
-                        .append($('<span>').text("avg:" + wind.average))
+                        .append($('<span>').text("avg:" + wind.average.net))
                         .css("border", "1px solid #000")
                         .css("padding-left", ' ' + (level * 10) + "px")
                         .css("background-color", "white")
@@ -831,6 +835,8 @@
                 $footer3.append(
                     $td
                     .append($bal = $('<span>').text(" (" + (wind.balance ? wind.balance : '0') + ")"))
+                    .append($('<br>'))
+                    .append($('<span>').text("avg out:" + wind.average.out))
                     .css("border", "1px solid #000")
                     .css("background-color", "white")
                 );
