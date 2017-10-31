@@ -15,7 +15,7 @@
     let targetCurrency = localStorage.getItem(localStorageKeyPrefix + "targetCurrency") || "chf"
     let startExpandLevel = localStorage.getItem(localStorageKeyPrefix + "startExpandLevel") || 1
 
-    let filepath = localStorage.getItem(localStorageKeyPrefix + "filepath") || "mydata.json"
+    let filepath = localStorage.getItem(localStorageKeyPrefix + "filepath") || "mydata.js"
     let test
 
     $(createControls)
@@ -836,7 +836,7 @@
                     $td
                     .append($bal = $('<span>').text(" (" + (wind.balance ? wind.balance : '0') + ")"))
                     .append($('<br>'))
-                    .append($('<span>').text("avg out:" + wind.average.out))
+                    .append($('<span>').text("avg/out:" + wind.average.net +"/" + wind.average.out))
                     .css("border", "1px solid #000")
                     .css("background-color", "white")
                 );

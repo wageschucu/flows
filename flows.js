@@ -27,8 +27,9 @@
         accountNames.forEach(accountName => {
             let account = findPropOnObject(accountName, normalizedAcccounts)
             let balances = findPropOnObject("balances", account)
+            let returns = findPropOnObject("returns", account)
 
-            result.allChunkedFlows.push(genAccountLine(allFlows, start, end, balances, unit, rythm, accountName))
+            result.allChunkedFlows.push(genAccountLine(allFlows, start, end, balances, returns, unit, rythm, accountName))
             result.paths.push(accountName)
             result.accounts.push(findPropOnObject(accountName, normalizedAcccounts))
 
@@ -80,10 +81,26 @@
     }
 
     // [all-flows],accountName,unit=>genAccountLine=>flows{windows:{ amount, unit, accounts, balance },...}
-    function genAccountLine(allFlows, start, end, balances, unit, rythm, accountName) {
+    function genAccountLine(allFlows, start, end, balances, returns, unit, rythm, accountName) {
 
         let rolledUpFlows = genRollupFlows(start, end, allFlows, [accountName], unit)
-        let actualFlows = actualizeFlows(rolledUpFlows, balances)
+        let actualFlows = calcFlowBalances(rolledUpFlows, balances, returns)
+        // -------------------- actual flow based contracts -------------
+        // augment flows with returns 
+        // for each return
+        //  create contract - account path: returns : return name
+        //  create flows
+        //  merge new flows into actual flows 
+        // ----
+        // augment flows with taxes
+        // taxes: assets, income, debt, expenses
+        //   ?? where to specify taxes: us, michigan, staat, bund, gemeinde,
+        //   new contract flow based contracts 
+        //     flowsbased:function(flows, contract, account), start
+        //        returns: flows, return spec
+        //       taxes: all contracts, all accounts, all flows contracts and accounts
+        //     order?? returns then taxes - minus
+
         let chunkedFlows = chunkFlows(start, end, actualFlows, rythm)
         return chunkedFlows
     }
@@ -132,21 +149,21 @@
     function translateRythmToJSMoment(rythm) {
         switch (rythm) {
             case "m":
-                rythm="M"
+                rythm = "M"
                 break;
 
             case "q":
-                rythm="Q"
+                rythm = "Q"
                 break;
 
             case "m":
-                rythm="M"
+                rythm = "M"
                 break;
 
             default:
                 break;
         }
-        return rythm; 
+        return rythm;
     }
 
     function parseRythm(rythm) {
@@ -360,7 +377,7 @@
             throw new Error("no conversion for : " + unit + " to " + targetUnit)
     }
     // flows,account:{balances,unit,...}=>actualizeFlows=>actualFlows{day:{ amount, unit, account, balance, oldBalance,.. },...}
-    function actualizeFlows(flows, balances) {
+    function calcFlowBalances(flows, balances) {
         let balance = 0
         _.reduce(flows, (flows, flow, day) => {
             if (flow.amount !== undefined)
@@ -551,7 +568,7 @@
 
                     let bals = {}
                     bals[last.day] = last.balance
-                    let actualFlows = actualizeFlows(rolledUpFlows, bals)
+                    let actualFlows = calcFlowBalances(rolledUpFlows, bals)
                     let end = _.findLastKey(actualFlows)
                     // copy start balance to balances
                     account.balances[start] = actualFlows[end].balance
@@ -678,4 +695,8 @@
         balances: [],
         inherited: [],
         transfers: []
+    }
+
+    function fixedrate(rate) {
+        return (account, path) => { return account.balance * rate }
     }
